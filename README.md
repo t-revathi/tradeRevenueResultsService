@@ -1,4 +1,4 @@
-# RevenueCalculatorService
+# tradeRevenueResultsService
 RevenueCalculatorService is developed in Go. The service calculates the profit/loss based on the business logic by sorting and processing the stock trading data and show the results grouped based on the financial year. Both the input and output are in JSON.
 
 # Project Structure
@@ -16,78 +16,13 @@ API accepts input and shows results in JSON.
 # Installation
 
 ```go
-git clone https://github.com/t-revathi/RevenueCalculatorService.git
+git clone https://github.com/t-revathi/tradeRevenueResultsService.git
 
 ```
 
 # Sample Input
 ```
-{"Config":{"FinancialYear":"2021",
-"StartFinancialMonth":"July",
-"EndFinancialMonth":"June",
-"SkipCorporateAction":true },
-"TransactionData" :[
-    {
-        "Date" : "2018-11-09T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-3133,
-        "Direction":"BUY",
-        "Price": 6.25,
-        "Activity":"TRADE",
-        "Quantity": 500
-    },
-    {
-         "Date" : "2019-02-14T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-3467.54,
-        "Direction":"SELL",
-        "Price": 6.965,
-        "Activity":"TRADE",
-        "Quantity": 499
-        
-    },
-    {
-         "Date" : "2019-04-02T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-1997.96,
-        "Direction":"BUY",
-        "Price": 6.18,
-        "Activity":"TRADE",
-        "Quantity": 322
-        
-    },
-    {
-        "Date" : "2019-04-26T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-2057.63,
-        "Direction":"SELL",
-        "Price": 6.415,
-        "Activity":"TRADE",
-        "Quantity": 322
-    },
-    {
-        "Date" : "2019-06-27T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-1288,
-        "Direction":"BUY",
-        "Price": 6.4,
-        "Activity":"TRADE",
-        "Quantity": 200
 
-    },
-    {
-        "Date" : "2019-12-11T12:42:31Z",
-        "Market": "NEXTDC Ltd",
-        "Cost":-1342,
-        "Direction":"SELL",
-        "Price": 6.75,
-        "Activity":"TRADE",
-        "Quantity": 200
-    
-    }
-
-]
-}
 ```
 # Sample Output
 ```
