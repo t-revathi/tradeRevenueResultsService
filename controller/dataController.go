@@ -2,27 +2,25 @@ package controller
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	service "tradeRevenueResultsService/service/dataservice"
+
+	//service "tradeRevenueResultsService/service/dataservice"
 	mongo "tradeRevenueResultsService/service/mongodb"
 
 	"github.com/go-chi/chi"
-	"github.com/google/martian/filter"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-
-	"github.com/go-chi/render"
 )
 
 type DataController struct {
-	dataService *service.DataService
-	dbService   *mongo.DBService
+	//dataService *service.DataService
+	dbService *mongo.DBService
 }
 
 func NewDataController(db string) *DataController {
 	return &DataController{
-		dataService: service.NewDataService(),
-		dbService:   mongo.NewDBService(),
+		//dataService: service.NewDataService(),
+		dbService: mongo.NewDBService(),
 	}
 }
 func Health(next http.Handler) http.Handler {
@@ -49,9 +47,9 @@ func (d *DataController) ShowAllRevenue(w http.ResponseWriter, r *http.Request) 
 	if err := render.DecodeJSON(r.Body, &dataCalculateRevenue); err != nil {
 		return
 	}
-	
-*/
-	
+
+	*/
+
 	client, ctx, cancel, err := d.dbService.Connectdb("mongodb://0.0.0.0:27017/stockprofitcalculator")
 
 	if err != nil {
@@ -64,14 +62,18 @@ func (d *DataController) ShowAllRevenue(w http.ResponseWriter, r *http.Request) 
 		fmt.Println("Couldn't connect to Database")
 	}
 
-
 	collection := "plResults"
 	filter := bson.M{}
-	// Get all records 
-	d.dbService.FindAll(client,ctx,"stockprofitcalculator",collection,filter)
+
+	// Get all records
+	cursor := d.dbService.FindAll(client, ctx, "stockprofitcalculator", collection, filter)
+	var results []bson.M
+	if err = cursor.All(ctx, &results); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(results)
 	//Return results to client
-	render.JSON(w, r,
-		result.Items)
+	//render.JSON(w, r,	result.Items)
 }
 
 func (d *DataController) healthCheck(w http.ResponseWriter, r *http.Request) {
